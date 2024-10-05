@@ -45,15 +45,15 @@ public class LevelSelection : MonoBehaviour
 
     public void selectLevel(int temp)
     {
-        if (!Levels[temp].transform.GetChild(0).gameObject.activeSelf)
-        {
+        // if (!Levels[temp].transform.gameObject.activeSelf)
+        // {
 
             PlayerPrefs.SetInt("SelectedLevel", temp);
 PlayButtonClickSound();
 
             StartCoroutine(LoadSceneWithDelay(NextScene));
 
-        }
+        // }
     }
     void UpdateLoadingUI(float progress)
     {
