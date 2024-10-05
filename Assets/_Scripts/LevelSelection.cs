@@ -49,6 +49,7 @@ public class LevelSelection : MonoBehaviour
         {
 
             PlayerPrefs.SetInt("SelectedLevel", temp);
+PlayButtonClickSound();
 
             StartCoroutine(LoadSceneWithDelay(NextScene));
 
@@ -98,17 +99,21 @@ if(loadingDelayTime>0){
     }
 
     public void BackBtn(){
+PlayButtonClickSound();
+
             StartCoroutine(LoadSceneWithDelay(PreviousScene));
 
     }
  public void OpenGithubLink()
     {
+PlayButtonClickSound();
 
         Application.OpenURL("https://github.com/qasimmu/2DPlatformerGame.git");
     }
     
         public void OpenItchio()
     {
+PlayButtonClickSound();
 
         Application.OpenURL("https://rainbow-flamingo.itch.io/jumpquest");
     }

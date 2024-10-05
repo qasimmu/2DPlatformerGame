@@ -42,12 +42,6 @@ public class MainMenu_Manager : MonoBehaviour
     {
         Time.timeScale = 1f;
 
-        if (SoundManager._SoundManager)
-        {
-            SoundManager._SoundManager.playMainMenuSounds(0.8f);
-
-        }
-
     }
 
     public void PlayButtonClickSound()
@@ -61,7 +55,7 @@ public class MainMenu_Manager : MonoBehaviour
 
     public void Play()
     {
-
+PlayButtonClickSound();
         StartCoroutine(LoadSceneWithDelay(NextScene));
     }
 
@@ -96,12 +90,14 @@ if(loadingDelayTime>0){
     
     public void OpenGithubLink()
     {
+PlayButtonClickSound();
 
         Application.OpenURL("https://github.com/qasimmu/2DPlatformerGame.git");
     }
     
         public void OpenItchio()
     {
+PlayButtonClickSound();
 
         Application.OpenURL("https://rainbow-flamingo.itch.io/jumpquest");
     }

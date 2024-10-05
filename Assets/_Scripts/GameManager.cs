@@ -31,16 +31,19 @@ public class GameManager : MonoBehaviour
     }
 
     public void PauseGame(){
+PlayButtonClickSound();
 
     levelPausePanel.SetActive(true);
 
     }
         public void ResumeGame(){
+PlayButtonClickSound();
 
     levelPausePanel.SetActive(false);
 
     }
     public void RestartGame(){
+PlayButtonClickSound();
 
             StartCoroutine(LoadSceneWithDelay(NextScene));
 
@@ -52,22 +55,26 @@ public class GameManager : MonoBehaviour
 
     }
     public void NextLevel(){
+PlayButtonClickSound();
 
     }
 
     public void HomeGame(){
+PlayButtonClickSound();
+
             StartCoroutine(LoadSceneWithDelay(PreviousScene));
 
     }
     public void OpenGithubLink()
     {
+PlayButtonClickSound();
 
         Application.OpenURL("https://github.com/qasimmu/2DPlatformerGame.git");
     }
     
         public void OpenItchio()
     {
-
+PlayButtonClickSound();
         Application.OpenURL("https://rainbow-flamingo.itch.io/jumpquest");
     }
 
@@ -98,5 +105,12 @@ if(loadingDelayTime>0){
         asyncOperation.allowSceneActivation = true;
 
     }
+    public void PlayButtonClickSound()
+    {
+        if (SoundManager._SoundManager)
+        {
+            SoundManager._SoundManager.playButtonClickSound();
 
+        }
+    }
 }

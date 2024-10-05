@@ -6,13 +6,12 @@ public class SoundManager : MonoBehaviour
 
     [Header("Audio Clips")]
     public AudioClip mainMenuSound;
-    public AudioClip missionSound, gamePlaySound, buttonClick,levelPause, levelFailed, levelComplete;
+    public AudioClip  gamePlaySound, buttonClick,levelPause, levelFailed, levelComplete;
     [Header("Audio Sources")]
     [SerializeField]
     internal AudioSource musicSource;
     [SerializeField]
     private AudioSource sfxSource, levelFail_CompleteSource;
-    [Header("Audio Listener")]
 
     public static SoundManager _SoundManager;
 
@@ -83,17 +82,7 @@ public class SoundManager : MonoBehaviour
         musicSource.clip = null;
         musicSource.Stop();
     }
-    public void playMissionSounds(float temp)
-    {
-        musicSource.clip = missionSound;
-        musicSource.Play();
-        musicSource.volume = temp;
-    }
-    public void StopMissionSounds(float temp)
-    {
-        musicSource.clip = null;
-        musicSource.Stop();
-    }
+
     public void playPauseSounds(float temp)
     {
         musicSource.clip = levelPause;
