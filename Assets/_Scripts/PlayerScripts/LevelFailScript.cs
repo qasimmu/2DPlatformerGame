@@ -4,28 +4,22 @@ using UnityEngine;
 
 public class LevelFailScript : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    /// <summary>
-    /// Sent when another object enters a trigger collider attached to this
-    /// object (2D physics only).
-    /// </summary>
-    /// <param name="other">The other Collider2D involved in this collision.</param>
     void OnTriggerEnter2D(Collider2D other)
     {
         if(other.gameObject.tag=="Player" && this.gameObject.tag=="LevelFail"){
 
+            if(GameManager.instance.playerLives==0){
+                
             GameManager.instance.CheckLevelFailorSuccessfull(true);
+
+            }else{
+                Debug.Log(GameManager.instance.playerLives);
+                GameManager.instance.playerLives= GameManager.instance.playerLives-1;
+                Debug.Log(GameManager.instance.playerLives);
+
+                GameManager.onChangeHealth?.Invoke();
+            }
         }
         if(other.gameObject.tag=="Player" && this.gameObject.tag=="LevelComplete"){
 

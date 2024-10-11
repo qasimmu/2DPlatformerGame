@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -20,6 +21,41 @@ public class GameManager : MonoBehaviour
 
 public GameObject PlayerObject;
 public GameObject PlayerStartingPosition;
+
+public int playerLives=3;
+public Text healthText;
+
+public delegate void OnChangeHealth();
+public static OnChangeHealth onChangeHealth;
+
+public AudioSource playerCoinsCollect, levelCompleteSource, levelFailSource;
+private void OnEnable() {
+    onChangeHealth+=ChangeHealth;
+}
+private void OnDisable() {
+    onChangeHealth-=ChangeHealth;
+    
+}
+
+public void ChangeHealth(){
+
+    healthText.text=playerLives.ToString();
+                GameManager.instance.PlayerRestartPosition();
+
+}
+
+public void PlayCoinClickSound(){
+                playerCoinsCollect.Play();
+
+}
+public Text playerScoreText;
+public int playerScore=0;
+public void CoinCollected(){
+    PlayCoinClickSound();
+    playerScore++;
+    playerScoreText.text=playerScore.ToString();
+
+}
     private void Awake() {
                 if(instance==null){
             instance=this;
@@ -29,21 +65,32 @@ public GameObject PlayerStartingPosition;
     public void CheckLevelFailorSuccessfull(bool isFail){
         if(isFail){
             levelFailedPanel.SetActive(true);
+            levelCompleteSource.Play();
+            PlayerObject.SetActive(false);
             Time.timeScale=0;
 
         }else{
             levelCompletePanel.SetActive(true);
+            levelFailSource.Play();
+
+            PlayerObject.SetActive(false);
+
             Time.timeScale=0;
 
         }
+    }
+    public void PlayerRestartPosition(){
+            PlayerObject.transform.position=PlayerStartingPosition.transform.position;
+
     }
     // Start is called before the first frame update
     void Start()
     {
             Time.timeScale=1f;
             Levels[PlayerPrefs.GetInt("SelectedLevel")].gameObject.SetActive(true);
-            PlayerObject.transform.position=PlayerStartingPosition.transform.position;
-
+           // PlayerObject.transform.position=PlayerStartingPosition.transform.position;
+//PlayerRestartPosition();
+ChangeHealth();
     }
 
     // Update is called once per frame
