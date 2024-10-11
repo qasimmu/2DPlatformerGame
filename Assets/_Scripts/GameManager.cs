@@ -28,7 +28,7 @@ public Text healthText;
 public delegate void OnChangeHealth();
 public static OnChangeHealth onChangeHealth;
 
-public AudioSource playerCoinsCollect, levelCompleteSource, levelFailSource;
+public AudioSource playerCoinsCollect, levelCompleteSource, levelFailSource,SlashSource;
 private void OnEnable() {
     onChangeHealth+=ChangeHealth;
 }
@@ -65,13 +65,11 @@ public void CoinCollected(){
     public void CheckLevelFailorSuccessfull(bool isFail){
         if(isFail){
             levelFailedPanel.SetActive(true);
-            levelCompleteSource.Play();
             PlayerObject.SetActive(false);
             Time.timeScale=0;
 
         }else{
             levelCompletePanel.SetActive(true);
-            levelFailSource.Play();
 
             PlayerObject.SetActive(false);
 

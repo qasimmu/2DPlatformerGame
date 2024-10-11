@@ -9,6 +9,10 @@ public class LevelFailScript : MonoBehaviour
     {
         if(other.gameObject.tag=="Player" && this.gameObject.tag=="LevelFail"){
 
+            GameManager.instance.SlashSource.Play();
+
+            GameManager.instance.levelFailSource.PlayDelayed(0.10f);
+
             if(GameManager.instance.playerLives==0){
                 
             GameManager.instance.CheckLevelFailorSuccessfull(true);
@@ -22,6 +26,8 @@ public class LevelFailScript : MonoBehaviour
             }
         }
         if(other.gameObject.tag=="Player" && this.gameObject.tag=="LevelComplete"){
+
+            GameManager.instance.levelCompleteSource.Play();
 
             GameManager.instance.CheckLevelFailorSuccessfull(false);
         }
